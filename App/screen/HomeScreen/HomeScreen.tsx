@@ -15,7 +15,9 @@ import {StoreContextUI} from '@/core/entity';
 import {ListReport} from './ListReport';
 
 export const HomeScreen = () => {
-  const {reportDispatch}: StoreContextUI = useContext(Context);
+  const {state, reportDispatch}: StoreContextUI = useContext(Context);
+  const {reportState} = state;
+  const {loading} = reportState;
   const navigation = useNavigation<NavigationProps>();
 
   const translateY = useRef(new Animated.Value(0)).current;
@@ -35,7 +37,7 @@ export const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Loading />
+      <Loading loading={loading} />
       <ListReport />
       <Animated.View
         style={[
